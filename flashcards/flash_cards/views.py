@@ -25,30 +25,29 @@ class CollectionsList(APIView):
 
 
 class CollectionsDetail(APIView):
-    def get_collection(self, pk):
+    def get_collection(self, collection_id):
         try:
-            return Collections.objects.get(collection_id=pk)
+            return Collections.objects.get(collection_id=collection_id)
         except Collections.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk):
-        collection = self.get_collection(pk)
+    def get(self, request, collection_id):
+        collection = self.get_collection(collection_id)
         serializer = CollectionsSerializer(collection)
         return Response(serializer.data)
 
-    def put(self, request, pk):
-        collection = self.get_collection(pk)
+    def put(self, request, collection_id):
+        collection = self.get_collection(collection_id)
         serializer = CollectionsSerializer(collection, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
-        collections = self.get_collection(pk)
+    def delete(self, request, collection_id):
+        collections = self.get_collection(collection_id)
         collections.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
 
 
 class CardsList(APIView):
