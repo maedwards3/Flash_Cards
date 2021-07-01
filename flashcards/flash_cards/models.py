@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class Collections(models.Model):
     collection_id = models.IntegerField(primary_key=True)
     collection_name = models.CharField(max_length=25)
