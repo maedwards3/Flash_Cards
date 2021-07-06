@@ -1,0 +1,11 @@
+
+
+.welcomeSign {
+    
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    padding: 20px; 
+    width: 15%;
+    height: 3%;
+    border-color: rgb(219, 10, 10);
+}
