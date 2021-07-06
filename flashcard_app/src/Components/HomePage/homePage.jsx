@@ -8,7 +8,7 @@ const HomePage = (props) => {
                 {props.collections.map(collection => {
                     return (
                         <div className="col-3">
-                            <div className="p-3 border bg-light">{collection.collection_name}</div>
+                            <div type="button" className="p-3 border bg-light">{collection.collection_name}</div>
                         </div>
                     );
                 })}
