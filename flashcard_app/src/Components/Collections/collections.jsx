@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import Cards from '../Cards/cards';
+import './collections.css'
 
-const Collection = () => {
+const Collection = (props) => {
     const [collection, setCollection] = useState([]);
 
     useEffect(() => {
@@ -9,14 +11,13 @@ const Collection = () => {
         .then(response => setCollection(response.data))
     }, []);
 
-
     return (
         <div className="container overflow-hidden">
             <div className="row gy-5">
                 {collection.map(collection => {
                     return (
-                        <div className="col-3">
-                            <div type="button" className="p-3 border bg-light">{collection.collection_name}</div>
+                        <div className="col-md-3 collectionBox">
+                            <div type="button" className="p-3 border bg-light" onClick={() => props.selectedCollection(collection.collection_id)}>{collection.collection_name}</div>
                         </div>
                     );
                 })}
