@@ -30,6 +30,7 @@ const Cards = (props) => {
                 return(
                     <div className="card">
                         <div className="card-body">
+                            <p>{cardNumber} of {props.cards.length}</p>
                             <h4 className="card-title">{card.key_word}</h4>
                             <p className="card-text">{card.definition}</p>
                             <button onClick={() => previousCard()}>Previous</button>
