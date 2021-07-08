@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const Cards = (props) => {
-    const [cards, setCards] = useState([]);
-
-    useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/collection/${props.selectedCollection}/card/`)
-        .then(response => setCards(response.data))
-    }, []);
-
     return (
         <div>
-            {cards.map(card => {
+            {props.cards.map(card => {
+                console.log(card)
                 return(
                     <div className="card">
                         <div className="card-body">

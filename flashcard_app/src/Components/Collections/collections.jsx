@@ -9,12 +9,14 @@ const Collection = (props) => {
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/collection/')
         .then(response => setCollection(response.data))
-    }, []);
+    }, [])
+    ;
 
     return (
         <div className="container overflow-hidden">
             <div className="row gy-5">
                 {collection.map(collection => {
+                    console.log(collection)
                     return (
                         <div className="col-md-3 collectionBox">
                             <div type="button" className="p-3 border bg-light" onClick={() => props.selectedCollection(collection.collection_id)}>{collection.collection_name}</div>
