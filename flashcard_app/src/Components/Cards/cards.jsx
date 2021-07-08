@@ -1,6 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Cards = (props) => {
+    const [cardNumber, setCardNumber] = useState(0)
+
+    function previousCard() {
+        let card = cardNumber;
+        card--;
+        if(card < 0) {
+            card = props.cards.length - 1;
+        }
+        setCardNumber(card)
+        console.log("prev button is being clicked") //test
+    }
+
+    function nextCard() {
+        let card = cardNumber;
+        card++;
+        if(card === props.cards.length) {
+            card = 0;
+        }
+        setCardNumber(card)
+        console.log("next button is being clicked") //test
+    }
+
     return (
         <div>
             {props.cards.map(card => {
@@ -10,8 +32,8 @@ const Cards = (props) => {
                         <div className="card-body">
                             <h4 className="card-title">{card.key_word}</h4>
                             <p className="card-text">{card.definition}</p>
-                            <button>Previous</button>
-                            <button>Next</button>
+                            <button onClick={() => previousCard()}>Previous</button>
+                            <button onClick={() => nextCard()}>Next</button>
                         </div>
                     </div>
                 )
