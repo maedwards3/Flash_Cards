@@ -8,29 +8,30 @@ import axios from 'axios';
 class App extends Component {
     constructor(props) {
         super(props);
-        this.selectedCollection = this.selectedCollection.bind(this)
+        this.setSelectedCollection = this.setSelectedCollection.bind(this)
         this.state = { 
             collectionIsSelected: false,
-            selectedCollectionId: 0,
+            selectedCollectionId: null,
             cards: []
         }
     }
 
-    selectedCollection = (collection_id) => {
+    setSelectedCollection = (collection_id) => {
         console.log("selected collection call") //test call
         this.setState({
             selectedCollectionId: collection_id
+        }, () => {
+            this.getCards(collection_id);
         });
-        this.getCards();
     }
 
     componentDidMount(){
-        this.getCards();
+        this.getCards(0);
     }
 
-    getCards = async () => {
+    getCards = async (collectionId) => {
         try {
-            let response = await axios.get(`http://127.0.0.1:8000/collection/${this.state.selectedCollectionId}/card/`);
+            let response = await axios.get(`http://127.0.0.1:8000/collection/${collectionId}/card/`);
             this.setState({
                 cards: response.data
             })
@@ -42,10 +43,12 @@ class App extends Component {
     }}
 
     render() {
+        const { cards, selectedCollectionId } = this.state;
+        const { setSelectedCollection } = this;
         return(
             <div className="my-component">
                 <React.Fragment>
-                    <div >
+                    <div style={{ height: '100vh' }}>
                         <div className="container-fluid welcomeSignContainer">
                             <div className="row">
                                 <div className="col-md-1"></div>
@@ -53,21 +56,13 @@ class App extends Component {
                                 <div className="col-md-7"></div>
                             </div>
                         </div>
-                        {/* {this.state.collectionIsSelected == true ? 
-                            <h1>Selected</h1>
-                        : } */}
-                        <div className="container-fluid">
-                            <div className="row">
-                                <div className="col-md-1"></div>
-                                <div className="col-md-3 directions"><h5>Select a stack to study</h5></div>
-                                <div className="col-md-8"></div>
-                            </div>
+                        <div>
+                            <Collection setSelectedCollection={setSelectedCollection} selectedCollection={selectedCollectionId} />
                         </div>
                         <div>
-                            <Collection selectedCollection={this.selectedCollection} />
-                        </div>
-                        <div>
-                            <Cards cards={this.state.cards} selectedCollection={this.state.selectedCollectionId} />
+                            {
+                                cards.length > 0 && selectedCollectionId && <Cards cards={cards} selectedCollection={selectedCollectionId} />
+                            }
                         </div>
                     </div>
                 </React.Fragment>
