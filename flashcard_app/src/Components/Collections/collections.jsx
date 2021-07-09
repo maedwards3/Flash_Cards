@@ -18,14 +18,6 @@ const Collection = ({ selectedCollection, setSelectedCollection }) => {
                     ?
                     <button onClick={() => setSelectedCollection(null)}>Return to Collection Selection</button>
                     :
-                    // collection.map(item => {
-                    //     console.log(item)
-                    //     return (
-                    //         <div key={item.collection_id} className="col-md-3 collectionBox">
-                    //             <div type="button" className="p-3 border bg-light" onClick={() => setSelectedCollection(item.collection_id)}>{item.collection_name}</div>
-                    //         </div>
-                    //     );
-                    // })
                     <>
                         <div className="container-fluid">
                             <div className="row">
