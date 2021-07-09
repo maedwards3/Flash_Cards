@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import AddCard from '../CreateCard/createCard';
+import './cards.css';
 
 const Cards = (props) => {
     const [cardNumber, setCardNumber] = useState(0);
@@ -35,23 +37,24 @@ const Cards = (props) => {
     return (
         <div className="card">
             <div>{console.log("Cards component props.cards", props.cards)}</div>
-            <div className="card-body back">
-                <p>{cardNumber + 1} of {props.cards.length + 1}</p>
+            <div className="card-body">
+                <p>{cardNumber + 1} of {props.cards.length}</p>
                 {
                     sideShown === 'front' ?
                     <div className="card-content front">
-                        <h4 className="card-title">{selectedCard.key_word}</h4>
-                        <button onClick={onShowBack}>Flip to back</button>
+                        <h2 className="card-title">{selectedCard.key_word}</h2>
+                        <button type="button" className="btn btn-outline-info" onClick={onShowBack}>Flip to back</button>
                     </div>
                     :
                     <div className="card-content back">
                         <h5 className="card-text">{selectedCard.definition}</h5>
-                        <button onClick={onShowFront}>Flip to front</button>
+                        <button type="button" className="btn btn-outline-info" onClick={onShowFront}>Flip to front</button>
                     </div>
                 }
-                <button onClick={() => previousCard()}>Previous</button>
-                <button onClick={() => nextCard()}>Next</button>
+                <button type="button" className="btn btn-outline-secondary" onClick={() => previousCard()}>Previous</button>
+                <button type="button" className="btn btn-outline-secondary" onClick={() => nextCard()}>Next</button>
             </div>
+            <AddCard />
         </div>
     )
 }

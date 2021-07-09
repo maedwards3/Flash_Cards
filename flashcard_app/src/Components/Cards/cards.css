@@ -1,0 +1,19 @@
+.card {
+    margin-top: 7%;
+}
+
+.card-body {
+    padding-bottom: 5%;
+    margin-bottom: 10%;
+    border-style: solid;
+    border-color: #73AD21;
+    border-width: thin medium thick;
+}
+
+.card-title {
+    margin-bottom: 10%;
+}
+
+.card-text {
+    margin-bottom: 10%;
+}
