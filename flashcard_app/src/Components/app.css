@@ -2,6 +2,7 @@
     
     border-radius: 25px;
     border: 2px solid #73AD21;
+    border-width: thin medium thick;
     padding: 20px; 
     width: 15%;
     height: 3%;
