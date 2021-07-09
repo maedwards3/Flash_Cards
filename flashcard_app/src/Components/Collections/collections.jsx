@@ -16,7 +16,7 @@ const Collection = ({ selectedCollection, setSelectedCollection }) => {
                 {
                     selectedCollection
                     ?
-                    <button onClick={() => setSelectedCollection(null)}>Return to Collection Selection</button>
+                    <button type="button" className="btn btn-outline-warning" onClick={() => setSelectedCollection(null)}>Return to Collection Selection</button>
                     :
                     <>
                         <div className="container-fluid">
